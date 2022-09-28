@@ -11,13 +11,13 @@ data class {
   }
 
   class Type {
-    let visible static Int IDENTIFIER = 1
-    let visible static Int INTEGER = 2
-    let visible static Int FLOAT = 3
-    let visible static Int STRING = 4
-    let visible static Int COMMENT = 5
-    let visible static Int WHITESPACE = 6
-    let visible static Int WS = 6
-    let visible static Int SYMBOL = 7
+    visible static Int IDENTIFIER = 1
+    visible static Int INTEGER = 2
+    visible static Int FLOAT = 3
+    visible static Int STRING = 4
+    visible static Int COMMENT = 5
+    visible static Int WHITESPACE = 6
+    visible static Int WS = 6
+    visible static Int SYMBOL = 7
   }
 }

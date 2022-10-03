@@ -24,5 +24,18 @@ data class {
     visible static Int WHITESPACE = 6
     visible static Int WS = 6
     visible static Int SYMBOL = 7
+
+    public static toString(Int value) => "#{value}" {
+      match value {
+        IDENTIFIER => return "IDENTIFIER"
+        INTEGER => return "INTEGER"
+        FLOAT => return "FLOAT"
+        STRING => return "STRING"
+        COMMENT => return "COMMENT"
+        WHITESPACE => return "WHITESPACE"
+        WS => return "WS"
+        SYMBOL => return "SYMBOL"
+      }
+    }
   }
 }

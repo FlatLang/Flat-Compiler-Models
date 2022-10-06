@@ -5,16 +5,6 @@ data class {
   visible Location location
   visible Int type
 
-  visible lazy Int endLineNumber => location.lineNumber + value.howMany('\n')
-  visible lazy Int endColumn => value.howMany('\n') > 0 ?
-    value.count - value.lastIndexOf('\n') :
-    (location.column + value.count)
-
-  data class Location {
-    visible Int lineNumber
-    visible Int column
-  }
-
   class Type {
     visible static Int IDENTIFIER = 1
     visible static Int INTEGER = 2

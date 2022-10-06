@@ -1,8 +1,6 @@
 package flat/compiler/models
 
-data class {
-  visible String value
-  visible Location location
+data class extends Lexeme {
   visible Int type
 
   class Type {
@@ -14,6 +12,8 @@ data class {
     visible static Int WHITESPACE = 6
     visible static Int WS = 6
     visible static Int SYMBOL = 7
+    visible static Int BOOL = 8
+    visible static Int NULL = 9
 
     public static toString(Int value) => "#{value}" {
       match value {
@@ -25,6 +25,8 @@ data class {
         WHITESPACE => return "WHITESPACE"
         WS => return "WS"
         SYMBOL => return "SYMBOL"
+        BOOL => return "BOOL"
+        NULL => return "NULL"
       }
     }
   }

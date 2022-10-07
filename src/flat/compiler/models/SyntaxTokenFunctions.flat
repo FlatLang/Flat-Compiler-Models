@@ -10,7 +10,7 @@ class {
   static Token START_ANGLE_BRACKET = Token(type: Token.Type.SYMBOL, value: "<")
   static Token END_ANGLE_BRACKET = Token(type: Token.Type.SYMBOL, value: ">")
 
-  public static splitOnTopLevel(Token[] tokens, Token splitToken) -> Token[][] {
+  public static splitOnTopLevel(Token[] tokens, Token splitToken, Bool: skipGenerics = false) -> Token[][] {
     let splitTokens = Token[][]
     splitTokens.add(Token[])
 
@@ -28,10 +28,14 @@ class {
       var Int endIndex = i + 1
 
       match token.value {
-        "{" => endIndex = findTokenOnTopLevel(tokens, END_BRACE, i) + 1
-        "(" => endIndex = findTokenOnTopLevel(tokens, END_PARENTHESIS, i) + 1
-        "[" => endIndex = findTokenOnTopLevel(tokens, END_BRACKET, i) + 1
-        "<" => endIndex = findTokenOnTopLevel(tokens, END_ANGLE_BRACKET, i) + 1
+        "{" => endIndex = findTokenOnTopLevel(tokens, END_BRACE, i, skipGenerics) + 1
+        "(" => endIndex = findTokenOnTopLevel(tokens, END_PARENTHESIS, i, skipGenerics) + 1
+        "[" => endIndex = findTokenOnTopLevel(tokens, END_BRACKET, i, skipGenerics) + 1
+        "<" => {
+          if (!skipGenerics) {
+            endIndex = findTokenOnTopLevel(tokens, END_ANGLE_BRACKET, i, skipGenerics) + 1
+          }
+        }
       }
 
       for (var Int n = i; n < endIndex; n++) {
@@ -44,7 +48,7 @@ class {
     return splitTokens
   }
 
-  public static findTokenOnTopLevel(Token[] tokens, Token targetToken, Int index = 0) -> Int => -1 {
+  public static findTokenOnTopLevel(Token[] tokens, Token targetToken, Int index = 0, Bool: skipGenerics = false) -> Int => -1 {
     var Int i = index + 1
 
     while (i > 0 && i < tokens.count) {
@@ -55,7 +59,13 @@ class {
         "{" => i = findTokenOnTopLevel(tokens, END_BRACE, i) + 1
         "(" => i = findTokenOnTopLevel(tokens, END_PARENTHESIS, i) + 1
         "[" => i = findTokenOnTopLevel(tokens, END_BRACKET, i) + 1
-        "<" => i = findTokenOnTopLevel(tokens, END_ANGLE_BRACKET, i) + 1
+        "<" => {
+          if (!skipGenerics) {
+            i = findTokenOnTopLevel(tokens, END_ANGLE_BRACKET, i) + 1
+          } else {
+            i++
+          }
+        }
         default => i++
       }
     }

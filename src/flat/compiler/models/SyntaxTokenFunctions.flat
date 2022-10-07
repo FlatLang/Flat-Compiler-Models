@@ -4,7 +4,7 @@ class {
   static Token START_BRACE = Token(type: Token.Type.SYMBOL, value: "{")
   static Token END_BRACE = Token(type: Token.Type.SYMBOL, value: "}")
   static Token START_PARENTHESIS = Token(type: Token.Type.SYMBOL, value: "(")
-  static Token END_PARETHESIS = Token(type: Token.Type.SYMBOL, value: ")")
+  static Token END_PARENTHESIS = Token(type: Token.Type.SYMBOL, value: ")")
 
   public static splitOnTopLevel(Token[] tokens, Token splitToken) -> Token[][] {
     let splitTokens = Token[][]
@@ -25,7 +25,7 @@ class {
 
       match token.value {
         "{" => endIndex = findTokenOnTopLevel(tokens, END_BRACE, i) + 1
-        "(" => endIndex = findTokenOnTopLevel(tokens, END_PARETHESIS, i) + 1
+        "(" => endIndex = findTokenOnTopLevel(tokens, END_PARENTHESIS, i) + 1
       }
 
       for (var Int n = i; n < endIndex; n++) {
@@ -47,7 +47,7 @@ class {
       match token.value {
         targetToken.value => return i
         "{" => i = findTokenOnTopLevel(tokens, END_BRACE, i) + 1
-        "(" => i = findTokenOnTopLevel(tokens, END_PARETHESIS, i) + 1
+        "(" => i = findTokenOnTopLevel(tokens, END_PARENTHESIS, i) + 1
         default => i++
       }
     }

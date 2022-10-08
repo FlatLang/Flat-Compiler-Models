@@ -14,6 +14,7 @@ data class extends Lexeme {
     visible static Int SYMBOL = 7
     visible static Int BOOL = 8
     visible static Int NULL = 9
+    visible static Int CHAR = 10
 
     public static toString(Int value) => "#{value}" {
       match value {
@@ -27,6 +28,7 @@ data class extends Lexeme {
         SYMBOL => return "SYMBOL"
         BOOL => return "BOOL"
         NULL => return "NULL"
+        CHAR => return "CHAR"
       }
     }
   }

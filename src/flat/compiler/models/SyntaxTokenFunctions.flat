@@ -38,7 +38,7 @@ class {
         }
       }
 
-      for (var Int n = i; n < endIndex; n++) {
+      for (n in i..endIndex) {
         splitTokens.last.add(tokens[n])
       }
 

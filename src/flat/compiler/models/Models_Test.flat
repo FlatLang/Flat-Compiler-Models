@@ -1,9 +1,9 @@
 package flat/compiler/models
 
 testable class {
-  test `can create`() {
-    let value = Lexeme()
+    test `can create`() {
+        let value = Lexeme()
 
-    expect(value).toNotBe(null)
-  }
+        expect(value).toNotBe(null)
+    }
 }
